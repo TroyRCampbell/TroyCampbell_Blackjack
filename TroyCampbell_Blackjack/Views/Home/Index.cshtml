@@ -1,0 +1,55 @@
+﻿@using System.Linq;
+
+@model TroyCampbell_Blackjack.Models.Game
+
+@{
+    ViewBag.Title = "Blackjack";
+
+    List<TroyCampbell_Blackjack.Models.Card> cardList = new List<TroyCampbell_Blackjack.Models.Card>();
+    if (Model != null)
+    {
+        cardList = Model.Deck.Cards.ToList();
+    }
+}
+
+
+@if (Model != null)
+{
+<p>
+    Dealer: @Html.Raw(Json.Encode(Model.Dealer))
+    Hand:
+    * @Model.Dealer.Hand.Cards[0]
+    * @Model.Dealer.Hand.Cards[1]
+
+    Player:
+    Hand:
+    * @Model.Players[0].Hand.Cards[0]
+    * @Model.Players[0].Hand.Cards[1]
+
+    Deck Count: @Model.Deck.Cards.Count
+    Cards:
+    @if (cardList.Count > 0)
+    {
+        @cardList[0]
+        @cardList[1]
+        @cardList[2]
+        @cardList[3]
+        @cardList[4]
+        @cardList[5]
+        @cardList[6]
+        @cardList[7]
+        @cardList[8]
+        @cardList[9]
+        @cardList[10]
+        @cardList[11]
+        @cardList[12]
+        @cardList[13]
+        @cardList[14]
+    }
+    ...
+</p>
+}
+else
+{
+    @Html.ActionLink("Start New Game", "StartNewGame")
+}
